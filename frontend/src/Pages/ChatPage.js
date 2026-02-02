@@ -1,5 +1,5 @@
 import { ChatState } from "../Context/ChatProvider";
-import { Box } from "@chakra-ui/react";
+import { Box, Spinner } from "@chakra-ui/react";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
 import ChatBox from "../components/ChatBox";
 import MyChats from "../components/MyChats";
@@ -7,6 +7,7 @@ import MyChats from "../components/MyChats";
 const ChatPage = () => {
   const { user } = ChatState();
   // console.log("User from context:", user);
+  if (!user) return <Spinner />;
 
   return (
     <div style={{ width: "100%" }}>

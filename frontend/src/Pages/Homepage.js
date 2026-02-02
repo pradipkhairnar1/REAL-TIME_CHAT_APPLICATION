@@ -34,7 +34,7 @@ const Homepage = () => {
         borderWidth={"1px"}
       >
         <Text fontSize={"4xl"} fontFamily={"Work sans"} color={"black"}>
-          Talk-With
+          TALKATOPIA
         </Text>
       </Box>
       <Box

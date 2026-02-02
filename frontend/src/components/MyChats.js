@@ -4,6 +4,7 @@ import { Box, Button, Stack, useToast, Text } from "@chakra-ui/react";
 import axios from "axios";
 import ChatLoading from "./ChatLoading";
 import { getSender } from "../config/ChatLogics";
+import GroupChatModal from "./miscellaneous/GroupChatModal";
 
 const MyChats = () => {
   const [loggedUser, setLoggedUser] = useState();
@@ -35,9 +36,13 @@ const MyChats = () => {
   };
 
   useEffect(() => {
-    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
-    fetchChats();
-  }, []);
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    setLoggedUser(userInfo);
+
+    if (user) {
+      fetchChats();
+    }
+  }, [user]);
 
   return (
     <Box
@@ -61,13 +66,15 @@ const MyChats = () => {
         alignItems={"center"}
       >
         My Chats
-        <Button
-          display={"flex"}
-          fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-          rightIcon={<i className="fa-solid fa-plus"></i>}
-        >
-          New Group Chat
-        </Button>
+        <GroupChatModal>
+          <Button
+            display={"flex"}
+            fontSize={{ base: "17px", md: "10px", lg: "17px" }}
+            rightIcon={<i className="fa-solid fa-plus"></i>}
+          >
+            New Group Chat
+          </Button>
+        </GroupChatModal>
       </Box>
       <Box
         display={"flex"}
@@ -81,7 +88,7 @@ const MyChats = () => {
       >
         {chats ? (
           <Stack overflow={"scroll"}>
-            {chats.map((chat) => (
+            {chats?.map((chat) => (
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor={"pointer"}
