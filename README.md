@@ -2,7 +2,7 @@
 
 COMPANY : CODTECH IT SOLUTIONS PRIVATE LIMITED
 
-NAME : RUDRA DHANBAHADUR GURUNG
+NAME : PRADIP VISHWAS KHAIRNAR
 
 ITERN ID : CTIS2099
 
@@ -13,7 +13,7 @@ DURATION : 6 WEEKS
 MENTOR : NEELA SANTOSH
 
 About the Project:-
-Talkatopia is a full-stack real-time chat application developed using the MERN Stack (MongoDB, Express.js, React.js, and Node.js). The project is designed to provide a seamless and interactive communication platform that supports one-to-one messaging, group chats, real-time notifications, typing indicators, and live message updates using Socket.IO. The application focuses on performance, scalability, and an intuitive user interface, making it suitable for modern web-based communication needs.
+NexChat is a full-stack real-time chat application developed using the MERN Stack (MongoDB, Express.js, React.js, and Node.js). The project is designed to provide a seamless and interactive communication platform that supports one-to-one messaging, group chats, real-time notifications, typing indicators, and live message updates using Socket.IO. The application focuses on performance, scalability, and an intuitive user interface, making it suitable for modern web-based communication needs.
 
 The primary objective of this project is to gain hands-on experience in full-stack web development, implement real-time communication, and understand how frontend and backend systems interact efficiently in a production-level application.
 
@@ -41,7 +41,7 @@ Each private chat displays: Sender and receiver names, Profile avatars, Message 
 
 3. Group Chat Management
 
-Talkatopia supports advanced group chat features, including: Creating group chats, Adding and removing members, Renaming group chats, Admin-only controls for group management
+NexChat supports advanced group chat features, including: Creating group chats, Adding and removing members, Renaming group chats, Admin-only controls for group management
 
 Group admins have special privileges, while regular members can only view and participate in conversations. This feature demonstrates role-based access control.
 

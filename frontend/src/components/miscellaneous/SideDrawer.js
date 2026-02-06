@@ -139,7 +139,7 @@ const SideDrawer = () => {
         </Tooltip>
 
         <Text fontSize={"2x1"} fontFamily={"Work sans"}>
-          TALKATOPIA
+          NEXCHAT
         </Text>
 
         <div>

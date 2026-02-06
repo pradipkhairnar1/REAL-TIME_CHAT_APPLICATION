@@ -20,8 +20,9 @@ import Lottie from "react-lottie";
 import animationData from "../animation/typing.json";
 
 import io from "socket.io-client";
+
 const ENDPOINT = "http://localhost:5000";
-var socket, selectedChatCompare;
+let socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [messages, setMessages] = useState([]);
@@ -31,35 +32,29 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
   const toast = useToast();
 
   const { selectedChat, setSelectedChat, user, notification, setNotification } =
     ChatState();
 
+  // ✅ FETCH MESSAGES
   const fetchMessages = async () => {
     if (!selectedChat) return;
 
     try {
+      setLoading(true);
+
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       };
 
-      setLoading(true);
       const { data } = await axios.get(
         `/api/message/${selectedChat._id}`,
-        config,
+        config
       );
+
       setMessages(data);
       setLoading(false);
 
@@ -76,20 +71,25 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
   };
 
+  // ✅ SOCKET SETUP
   useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit("setup", user);
+
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
     socket.on("stop typing", () => setIsTyping(false));
+
+    return () => socket.disconnect(); // ⭐ prevents memory leak
   }, []);
 
+  // ✅ LOAD MESSAGES WHEN CHAT CHANGES
   useEffect(() => {
     fetchMessages();
-
     selectedChatCompare = selectedChat;
   }, [selectedChat]);
 
+  // ✅ RECEIVE MESSAGES
   useEffect(() => {
     socket.on("message recieved", (newMessageRecieved) => {
       if (
@@ -105,14 +105,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     });
 
-    return () => {
-      socket.off("message recieved");
-    };
+    return () => socket.off("message recieved");
   }, []);
 
+  // ✅ SEND MESSAGE
   const sendMessage = async (event) => {
     if (event.key !== "Enter" || !newMessage.trim()) return;
+
     socket.emit("stop typing", selectedChat._id);
+
     try {
       const config = {
         headers: {
@@ -120,14 +121,17 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
+
+      const messageToSend = newMessage;
       setNewMessage("");
+
       const { data } = await axios.post(
         "/api/message",
         {
-          content: newMessage,
+          content: messageToSend,
           chatId: selectedChat._id,
         },
-        config,
+        config
       );
 
       socket.emit("new message", data);
@@ -144,21 +148,23 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
   };
 
+  // ✅ TYPING HANDLER (IMPROVED)
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
-    // Typing Indicater Logic
+
     if (!socketConnected) return;
 
     if (!typing) {
       setTyping(true);
       socket.emit("typing", selectedChat._id);
     }
+
     let lastTypingTime = new Date().getTime();
-    var timerLength = 3000;
+    const timerLength = 3000;
 
     setTimeout(() => {
-      var timeNow = new Date().getTime();
-      var timeDiff = timeNow - lastTypingTime;
+      let timeNow = new Date().getTime();
+      let timeDiff = timeNow - lastTypingTime;
 
       if (timeDiff >= timerLength && typing) {
         socket.emit("stop typing", selectedChat._id);
@@ -187,10 +193,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               aria-label="Go back"
               onClick={() => setSelectedChat("")}
             />
+
             {!selectedChat.isGroupChat ? (
               <>
                 {getSender(user, selectedChat.users)}
-
                 <ProfileModal user={getSenderFull(user, selectedChat.users)} />
               </>
             ) : (
@@ -204,6 +210,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </>
             )}
           </Text>
+
           <Box
             display={"flex"}
             flexDir={"column"}
@@ -215,13 +222,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             overflowY={"hidden"}
           >
             {loading ? (
-              <Spinner
-                size={"xl"}
-                w={20}
-                h={20}
-                alignSelf={"center"}
-                margin={"auto"}
-              />
+              <Spinner size={"xl"} alignSelf={"center"} margin={"auto"} />
             ) : (
               <div className="messages">
                 <ScrollableChat messages={messages} />
@@ -229,34 +230,32 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             )}
 
             <FormControl onKeyDown={sendMessage} isRequired mt={3}>
-              {isTyping ? (
-                <div>
-                  <Lottie
-                    options={defaultOptions}
-                    width={70}
-                    style={{ marginBottom: 15, marginLeft: 0 }}
-                  />
-                </div>
-              ) : (
-                <></>
+              
+              {/* ✅ TYPING ANIMATION */}
+              {isTyping && (
+                <Lottie
+                  options={{
+                    loop: true,
+                    autoplay: true,
+                    animationData: animationData,
+                  }}
+                  width={70}
+                  style={{ marginBottom: 10 }}
+                />
               )}
+
               <Input
                 variant={"filled"}
                 bg={"#E0E0E0"}
                 placeholder="Enter a message.."
-                onChange={typingHandler}
                 value={newMessage}
+                onChange={typingHandler}
               />
             </FormControl>
           </Box>
         </>
       ) : (
-        <Box
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          h={"100%"}
-        >
+        <Box display={"flex"} alignItems={"center"} justifyContent={"center"} h={"100%"}>
           <Text fontSize={"3xl"} pb={3} fontFamily={"Work sans"}>
             Click on a user to start chatting
           </Text>
