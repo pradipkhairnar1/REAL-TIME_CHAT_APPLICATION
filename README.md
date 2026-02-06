@@ -4,79 +4,79 @@ COMPANY : CODTECH IT SOLUTIONS PRIVATE LIMITED
 
 NAME : PRADIP VISHWAS KHAIRNAR
 
-ITERN ID : CTIS2099
+ITERN ID : CTIS2857
 
 DOMAIN : MERN STACK WEB DEVELOPMENT
 
-DURATION : 6 WEEKS
+DURATION : 4 WEEKS
 
 MENTOR : NEELA SANTOSH
 
 About the Project:-
-NexChat is a full-stack real-time chat application developed using the MERN Stack (MongoDB, Express.js, React.js, and Node.js). The project is designed to provide a seamless and interactive communication platform that supports one-to-one messaging, group chats, real-time notifications, typing indicators, and live message updates using Socket.IO. The application focuses on performance, scalability, and an intuitive user interface, making it suitable for modern web-based communication needs.
+# NexChat 💬  
+### Real-Time Chat Application 
 
-The primary objective of this project is to gain hands-on experience in full-stack web development, implement real-time communication, and understand how frontend and backend systems interact efficiently in a production-level application.
+NexChat is a full-stack real-time chat application built using the **MERN Stack** (MongoDB, Express.js, React.js, Node.js). It enables seamless one-to-one and group communication with instant message delivery, typing indicators, and real-time notifications powered by Socket.IO.
+Designed with scalability and performance in mind, NexChat simulates modern messaging platforms such as WhatsApp and Slack while providing hands-on experience in building production-style full-stack applications.
 
-The application follows a client–server architecture:
 
-1. Frontend: Built using React.js and Chakra UI, responsible for user interaction, UI rendering, and real-time updates.
+## 🚀 Features
 
-2. Backend: Built using Node.js and Express.js, handles APIs, authentication, chat logic, and database operations.
+✅ Secure User Authentication (JWT)  
+✅ One-to-One Messaging  
+✅ Group Chat with Admin Controls  
+✅ Real-Time Messaging using Socket.IO  
+✅ Live Typing Indicator  
+✅ Instant Notifications  
+✅ Persistent Chat History  
+✅ Responsive UI with Chakra UI  
 
-3. Database: MongoDB Atlas is used for storing users, chats, messages, and notifications.
 
-4. Real-Time Engine: Socket.IO enables instant message delivery, typing indicators, and real-time notifications.
+## 🧠 Tech Stack
 
-Key Features
+**Frontend:**  
+- React.js  
+- Chakra UI  
 
-1. User Authentication & Authorization
+**Backend:**  
+- Node.js  
+- Express.js  
 
-The application includes a secure authentication system using JWT (JSON Web Tokens). Users can register with name, email, password, and profile picture, log in securely, maintain session persistence using localStorage and passwords are encrypted, and protected routes ensure that only authenticated users can access chat functionalities.
+**Database:**  
+- MongoDB  
 
-2. One-to-One Chat Functionality
+**Real-Time Engine:**  
+- Socket.IO  
 
-Users can search for other registered users and initiate private conversations. The system ensures: Duplicate chats are avoided, Existing chats are reused, Chat history is preserved and fetched from the database
 
-Each private chat displays: Sender and receiver names, Profile avatars, Message timestamps, Latest message preview in the chat list
+## ⚙️ Architecture
 
-3. Group Chat Management
+NexChat follows a client–server architecture:
 
-NexChat supports advanced group chat features, including: Creating group chats, Adding and removing members, Renaming group chats, Admin-only controls for group management
+- **Frontend:** Handles UI rendering, user interactions, and real-time updates.
+- **Backend:** Manages APIs, authentication, chat logic, and database operations.
+- **Database:** Stores users, chats, and messages.
+- **Socket.IO:** Enables bidirectional real-time communication.
 
-Group admins have special privileges, while regular members can only view and participate in conversations. This feature demonstrates role-based access control.
 
-4. Real-Time Messaging (Socket.IO)
+## 🔐 Authentication
 
-A core highlight of the project is real-time communication using Socket.IO: Messages are delivered instantly without page refresh, Users automatically join chat rooms, Messages are broadcast only to relevant users, Socket rooms ensure scalability and performance
+- Passwords are encrypted before storage  
+- JWT ensures secure session management  
+- Protected routes prevent unauthorized access  
 
-This implementation simulates real-world chat applications such as WhatsApp and Slack.
 
-5. Typing Indicator
+## 💬 Real-Time Capabilities
 
-The application includes a live typing indicator, enhancing user experience. When a user starts typing: A socket event is emitted, Other users in the same chat see an animated typing indicator, The indicator stops after inactivity
+Socket.IO powers:
 
-This feature demonstrates efficient event-based communication and socket optimization.
+- Instant message delivery  
+- Typing indicators  
+- Live notifications  
+- Chat room broadcasting  
 
-6. Real-Time Notifications
 
-If a user receives a message while viewing another chat: A notification is triggered The notification appears in the bell icon Duplicate notifications are prevented Clicking a notification opens the respective chat
-
-This feature improves usability and ensures no messages are missed.
-
-7. Message Display & UI Enhancements
-
-Messages are displayed using a scrollable chat feed with: Conditional avatar rendering, Message grouping by sender, Dynamic alignment (left/right based on sender), Smooth auto-scroll behavior
-
-Chakra UI components ensure: Responsive design, Consistent styling, Mobile-friendly layout
-
-Tech Stack
-Client: React JS
-
-Server: Node JS, Express JS
-
-Database: Mongo DB
-
-## Run Locally
+## 🖥️ Run Locally
 
 Start the server
 Backend:
@@ -89,3 +89,5 @@ Frontend:
 cd frontend
 npm install
 npm start
+
+#OUTPUT
