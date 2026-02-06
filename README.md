@@ -13,14 +13,14 @@ DURATION : 4 WEEKS
 MENTOR : NEELA SANTOSH
 
 About the Project:-
-# NexChat 💬  
-### Real-Time Chat Application 
+#Real-Time Chat Application 
 
+#NexChat 💬  
 NexChat is a full-stack real-time chat application built using the **MERN Stack** (MongoDB, Express.js, React.js, Node.js). It enables seamless one-to-one and group communication with instant message delivery, typing indicators, and real-time notifications powered by Socket.IO.
 Designed with scalability and performance in mind, NexChat simulates modern messaging platforms such as WhatsApp and Slack while providing hands-on experience in building production-style full-stack applications.
 
 
-## 🚀 Features
+## Features
 
 ✅ Secure User Authentication (JWT)  
 ✅ One-to-One Messaging  
@@ -32,7 +32,7 @@ Designed with scalability and performance in mind, NexChat simulates modern mess
 ✅ Responsive UI with Chakra UI  
 
 
-## 🧠 Tech Stack
+## Tech Stack
 
 **Frontend:**  
 - React.js  
@@ -49,7 +49,7 @@ Designed with scalability and performance in mind, NexChat simulates modern mess
 - Socket.IO  
 
 
-## ⚙️ Architecture
+## Architecture
 
 NexChat follows a client–server architecture:
 
@@ -59,14 +59,14 @@ NexChat follows a client–server architecture:
 - **Socket.IO:** Enables bidirectional real-time communication.
 
 
-## 🔐 Authentication
+## Authentication
 
 - Passwords are encrypted before storage  
 - JWT ensures secure session management  
 - Protected routes prevent unauthorized access  
 
 
-## 💬 Real-Time Capabilities
+## Real-Time Capabilities
 
 Socket.IO powers:
 
@@ -76,7 +76,7 @@ Socket.IO powers:
 - Chat room broadcasting  
 
 
-## 🖥️ Run Locally
+## Run Locally
 
 Start the server
 Backend:
@@ -91,3 +91,4 @@ npm install
 npm start
 
 #OUTPUT
+
